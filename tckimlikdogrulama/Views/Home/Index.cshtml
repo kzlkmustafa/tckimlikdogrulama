@@ -1,0 +1,46 @@
+﻿@model tckimlikdogrulama.Model.signupModel
+@{
+}
+<head>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/site.js"></script>
+</head>
+
+<div class="container">
+    <div class="left">
+        <div class="header">
+            <h2 class="animation a1">Gazi Üniversitesi</h2>
+            <h4 class="animation a1">Metaverse dünyasına sen de katıl</h4>
+            <span class="valerror animation a1">@ViewBag.qw</span>
+
+        </div>
+        <form id="SignupForm" class=" form" method="post">
+
+            <input type="text" name="Ad" class="form-field animation a2" placeholder="Ad" / required>
+            @Html.ValidationMessageFor(x => x.Ad,"", new{@class ="valerror animation a2"})
+            <span id="Ad"></span>
+
+            <input type="text" name="Soyad" class="form-field animation a2" placeholder="Soyad" / required>
+            @Html.ValidationMessageFor(x => x.Soyad,"", new{@class ="valerror animation a2"})
+
+            <input type="datetime" name="DogumYili" class="form-field animation a3" placeholder="Doğum Tarihi" onfocus="(this.type='date')" required>
+
+
+            <input type="number" name="TCKimlikNo" class="form-field animation a3" placeholder="Tc Kimlik No" / required>
+            @Html.ValidationMessageFor(x => x.TCKimlikNo,"", new{@class ="valerror animation a3"})
+
+            <input type="email" name="Email" class="form-field animation a4" placeholder="Email" / required>
+            @Html.ValidationMessageFor(x => x.Email,"", new{@class ="valerror animation a4"})
+
+            <a onclick="getAccount()" class="button1 animation a5" id="enableEthereumButton">Metamask'a Bağlan</a>
+
+            <input type="text" name="metamaskaddress" class="form-field animation a4" id="showAccount" placeholder="metamaskadresi" readonly required>
+            @Html.ValidationMessageFor(x => x.metamaskaddress,"", new{@class ="valerror animation a4"})
+
+            <br />
+
+            <button type="submit" class="animation a6">Katıl</button>
+        </form>
+    </div>
+    <div class="right"></div>
+</div>
