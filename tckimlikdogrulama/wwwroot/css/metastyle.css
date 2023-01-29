@@ -74,7 +74,7 @@
 
         100% {
             opacity: 1;
-            max-width: 41.666667%;
+            width: 460px;
         }
     }
   }
