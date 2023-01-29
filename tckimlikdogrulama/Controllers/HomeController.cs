@@ -4,6 +4,7 @@ using tckimlikdogrulama.Model;
 using static Kimlik.KPSPublicSoapClient;
 using tckimlikdogrulama.Service;
 using FluentValidation.Results;
+using System.Globalization;
 
 namespace tckimlikdogrulama.Controllers
 {
@@ -29,13 +30,14 @@ namespace tckimlikdogrulama.Controllers
 
                 bool? durum;
                 long tckimlik = (long)p.TCKimlikNo;
+                string name = p.Ad.ToUpper(new CultureInfo("tr-TR", false));
 
                 try
                 {
                     var service = new Kimlik.KPSPublicSoapClient(EndpointConfiguration.KPSPublicSoap);
                     var tcKimlikDogrulamaServisResponse = service.TCKimlikNoDogrulaAsync(
                              tckimlik,
-                             p.Ad.ToUpper(),
+							 name,
                              p.Soyad.ToUpper(),
                              p.DogumYili.Year
                              ).GetAwaiter().GetResult();

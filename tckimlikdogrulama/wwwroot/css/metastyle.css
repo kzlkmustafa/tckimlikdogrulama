@@ -160,7 +160,7 @@ input::-webkit-inner-spin-button {
 
 .form-box .form-input span{
     position: absolute;
-    top: 8px;
+    top: 13px;
     padding-left: 20px;
     color: #777;
 }
