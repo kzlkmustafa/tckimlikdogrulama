@@ -5,6 +5,8 @@ using static Kimlik.KPSPublicSoapClient;
 using tckimlikdogrulama.Service;
 using FluentValidation.Results;
 using System.Globalization;
+using System.Collections;
+using System.Linq;
 
 namespace tckimlikdogrulama.Controllers
 {
@@ -17,6 +19,7 @@ namespace tckimlikdogrulama.Controllers
             ViewBag.ps = false;
             return View();
         }
+       
         [HttpPost]
         public IActionResult Index(signupModel p)
         {
@@ -50,23 +53,30 @@ namespace tckimlikdogrulama.Controllers
 
                 if (durum == false)
                 {
-                    ViewBag.qw = "Kimlik Bilgilerinizi Doğru Giriniz!";
-                    return View();
+                    string errormes = "Kimlik Bilgilerinizi Doğru Giriniz!";
+                    return Json(new { result = false, error = errormes });
 
                 }
                 else
                 {
                     sud.Insert(p);
-                    return RedirectToAction("Correct", "Home");
+                    ViewBag.ps = true;
+                    return Json(new { result = true, error = "doğru"});
+                    //return RedirectToAction("Correct", "Home");
                 }
             }
             else
             {
+                ArrayList arrayList = new ArrayList();
                 foreach (var item in results.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    arrayList.Add(item.ErrorMessage);
                 }
-                return View();
+                
+                string errormesa = string.Join(" ",arrayList.ToArray());
+                return Json(new { result = false, error = errormesa });
+
 
             }
 
