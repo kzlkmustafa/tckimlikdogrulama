@@ -29,8 +29,8 @@
                         </div>
                     </div>
 
-                    @if (ViewBag.ps == false)
-                    {
+                    @*@if (ViewBag.ps == false)
+                    {*@
 
                     <form action="/" id="SignupForm" class=" form">
                         <div class="form-input animation a2">
@@ -70,11 +70,11 @@
                         </div>
 
                         <div class="text-left animation a6">
-                            <button type="submit" class="btn">Katıl</button>
+                            <button id="ajaxStart" type="submit" class="btn">Katıl</button>
                         </div>
                     </form>
                     
-                    }
+                    @*}
                     else
                     {
                     <div class="header">
@@ -84,7 +84,7 @@
                     <h1 class="animation a2" style="color:greenyellow;">Kayıt Başarılı!</h1>
 
                     </div>
-                    }
+                    }*@
 
                 </div>
             </div>
@@ -96,6 +96,7 @@
     <script type="text/javascript">
         
         $("#SignupForm").submit(function AjaxFormSubmit() {
+            $("#ajaxStart").attr("disabled", true);
             event.preventDefault();
             var $form = $(this),
                 Ads = $form.find("input[name='Ad']").val(),
@@ -104,14 +105,19 @@
                 TCKimlikNos = $form.find("input[name='TCKimlikNo']").val(),
                 Emails = $form.find("input[name='Email']").val(),
                 metamaskaddresss = $form.find("input[name='metamaskaddress']").val(),
-                url = $form.attr( "action" );
+                url = $form.attr( "action");
             
             var posting = $.post(url, { Ad: Ads, Soyad: Soyads, DogumYili: DogumYilis, TCKimlikNo: TCKimlikNos, Email: Emails, metamaskaddress: metamaskaddresss });
             posting.done(function (data) {
+                $("#ajaxStart").attr("disabled", false);
                 var content = data.error;
-                console.log(data.error);
+                console.log(data);
                 $("#errorresult").empty().append(content);
-               
+
+                if (data.result == true) {
+                    window.location = "/Home/Correct";
+                    console.log("Malatya");
+                };
             });    
         });
     </script>
