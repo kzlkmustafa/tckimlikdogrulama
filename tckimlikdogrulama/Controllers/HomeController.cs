@@ -26,11 +26,8 @@ namespace tckimlikdogrulama.Controllers
             Validationform validationf = new Validationform();
             ValidationResult results = validationf.Validate(p);
 
-
-
             if (results.IsValid)
             {
-
                 bool? durum;
                 long tckimlik = (long)p.TCKimlikNo;
                 string name = p.Ad.ToUpper(new CultureInfo("tr-TR", false));
@@ -77,7 +74,6 @@ namespace tckimlikdogrulama.Controllers
                 
                 string errormesa = string.Join(" ",arrayList.ToArray());
                 return Json(new { result = false, error = errormesa });
-
 
             }
 

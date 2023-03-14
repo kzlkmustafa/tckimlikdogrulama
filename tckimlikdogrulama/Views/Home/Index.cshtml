@@ -29,9 +29,6 @@
                         </div>
                     </div>
 
-                    @*@if (ViewBag.ps == false)
-                    {*@
-
                     <form action="/" id="SignupForm" class=" form">
                         <div class="form-input animation a2">
                             <span><i class="fa fa-pen"></i></span>
@@ -74,18 +71,6 @@
                         </div>
                     </form>
                     
-                    @*}
-                    else
-                    {
-                    <div class="header">
-
-                    <img class="animation a2" style="max-height:70px;" src="~/image/vrglasses.png" />
-                    <br />
-                    <h1 class="animation a2" style="color:greenyellow;">Kayıt Başarılı!</h1>
-
-                    </div>
-                    }*@
-
                 </div>
             </div>
 
@@ -116,7 +101,6 @@
 
                 if (data.result == true) {
                     window.location = "/Home/Correct";
-                    console.log("Malatya");
                 };
             });    
         });
