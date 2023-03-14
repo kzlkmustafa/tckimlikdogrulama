@@ -16,7 +16,6 @@ namespace tckimlikdogrulama.Controllers
 
         public IActionResult Index()
         {
-            //ViewBag.ps = false;
             return View();
         }
        
@@ -57,10 +56,7 @@ namespace tckimlikdogrulama.Controllers
                 else
                 {
                     sud.Insert(p);
-                    ViewBag.ps = true;
-                    //return View(ViewBag.ps = true);
                     return Json(new { result = true, error = ""});
-                    //return RedirectToAction("Correct", "Home");
                 }
             }
             else
