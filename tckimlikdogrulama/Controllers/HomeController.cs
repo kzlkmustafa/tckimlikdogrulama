@@ -61,8 +61,9 @@ namespace tckimlikdogrulama.Controllers
                 {
                     sud.Insert(p);
                     ViewBag.ps = true;
-                    return Json(new { result = true, error = "doğru"});
-                    //return RedirectToAction("Correct", "Home");
+                    //return View(ViewBag.ps = true);
+                    //return Json(new { result = true, error = "doğru"});
+                    return RedirectToAction("Correct", "Home");
                 }
             }
             else
